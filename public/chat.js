@@ -12,3 +12,7 @@ socket.on('messages', function(data) {
     document.body.appendChild(eval(para));
     
 });
+
+socket.on("greeting" , function(data){
+    alert(data);
+});

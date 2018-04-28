@@ -26,17 +26,21 @@ app.use(express.static("public"));
 
 //Socket setup
 var io = socket(server);
-
+app.locals.clients = [];
 io.on('connection', function(socket){
-
+	//var clients = [];
+	app.locals.clients.push(socket.id);
+	console.log(app.locals.clients);
 	console.log('made a socket connection : '+socket.id);
-	var code = qr.imageSync("this is my freaking text", {type : 'svg'},"M");
+	var code = qr.imageSync(socket.id+"", {type : 'svg'},"M");
 
 	var base64      = code.toString("base64");
 	
 	socket.on('join', function(data) {
 		console.log(data);
 		io.emit('messages', base64);
+		//send to specific someone
+		io.sockets.connected[app.locals.clients[0]].emit("greeting", "Howdy, User 1!");
 	});
 
 	var clients = io.sockets.clients();
