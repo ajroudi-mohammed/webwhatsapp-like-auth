@@ -5,5 +5,10 @@ socket.on('connect', function(data) {
     socket.emit('join', 'Hello World from client');
 });
 socket.on('messages', function(data) {
-    alert(data);
+ 
+    var para = document.createElement("p");
+    para.innerHTML = data;
+    para.style.cssText = 'width:200px;height:200px;';
+    document.body.appendChild(eval(para));
+    
 });

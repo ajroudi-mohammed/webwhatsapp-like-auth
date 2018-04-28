@@ -1,6 +1,8 @@
 var express = require("express");
 var socket = require("socket.io");
 var qr = require("qr-image");
+var btoa = require('btoa');
+var fs = require("fs");
 
 //App setup
 var app = express();
@@ -26,9 +28,17 @@ app.use(express.static("public"));
 var io = socket(server);
 
 io.on('connection', function(socket){
+
 	console.log('made a socket connection : '+socket.id);
+	var code = qr.imageSync("this is my freaking text", {type : 'svg'},"M");
+
+	var base64      = code.toString("base64");
+	
 	socket.on('join', function(data) {
 		console.log(data);
-		io.emit('messages', 'Hello');
+		io.emit('messages', base64);
 	});
+
+	var clients = io.sockets.clients();
+	console.log("test : "+clients.name);
 });
