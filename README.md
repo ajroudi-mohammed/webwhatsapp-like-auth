@@ -1,14 +1,10 @@
 # webwhatsapp-like-auth
-Bonjour Badr !
+This repo is an attempt to create a whatsapp like web authentication with QR code scanning, using socket.io and Notejs.
 
-rak 3aref : npm install
+1 - npm install
 
-apres executer la commande : nodemon index
+2 - npm install -g nodemon
 
-ila makhedmatch lik executer : npm install -g nodemon
+3 - nodemon index
 
-apres nodemon index
-
-depuis navigateur : localhost:4000
-
-watch the magik !
+4 - localhost:4000
